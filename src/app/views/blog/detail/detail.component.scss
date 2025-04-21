@@ -1,0 +1,280 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.article {
+  padding: 80px 0 120px;
+  .container {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    .article-section {
+      color: #b9d5fd;
+      margin-bottom: 60px;
+
+      span {
+        font-weight: 500;
+        color: $skyBlue-text-color;
+      }
+    }
+
+    article {
+      .article-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+        .article-header-info {
+          width: 607px;
+
+          .article-header-info-title {
+            @include head-lora-38;
+            line-height: 130%;
+            margin-bottom: 40px;
+          }
+
+          .article-header-info-desc {
+            font-size: 20px;
+            color: $skyBlue-text-color;
+          }
+        }
+
+        .article-header-image {
+          img {
+            border-radius: 5px;
+            width: 527px;
+          }
+        }
+      }
+
+      .article-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: #709fdc;
+          margin-top: 40px;
+        }
+
+        p {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 130%;
+          color: $blue-text-color;
+        }
+
+        ol {
+          li {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 130%;
+            color: $blue-text-color;
+          }
+        }
+
+        .article-text {
+          width: 818px;
+        }
+
+        .also-read {
+          .also-read-title {
+            font-family: "Lora", sans-serif;
+            font-weight: 400;
+            font-size: 26px;
+            color: $skyBlue-text-color;
+            margin-bottom: 20px;
+          }
+
+          .related-articles {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px;
+          }
+        }
+      }
+    }
+
+    .share-article {
+      display: flex;
+      margin-bottom: 61px;
+
+      span {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        margin-right: 20px;
+        color: $skyBlue-text-color;
+      }
+
+      .share-article-icons {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+    }
+
+    .comments {
+      .comments-title {
+        @include head-lora-38;
+        margin-bottom: 20px;
+      }
+
+      .firs-comment {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: $blue-text-color;
+        margin-bottom: 40px;
+      }
+
+      .comment-form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+        textarea {
+          width: 818px;
+          height: 248px;
+          border: 2px solid $skyBlue-text-color;
+          margin-bottom: 20px;
+          resize: none;
+          border-radius: 5px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 130%;
+          color: $blue-text-color;
+          padding: 20px;
+          outline: none;
+
+          &::placeholder {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 130%;
+            color: #a8aba7;
+          }
+        }
+
+        .button {
+          width: 422px;
+        }
+      }
+
+      .not-logged {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 60px;
+
+        a {
+          text-decoration: none;
+          color: $skyBlue-text-color;
+        }
+      }
+
+      .comment {
+        margin-bottom: 40px;
+        .comment-user-info {
+          display: flex;
+          margin-bottom: 15px;
+
+          .user-image {
+            display: flex;
+            background: rgb(182, 219, 253);
+            border-radius: 50%;
+            border: 2px solid $skyBlue-text-color;
+            margin-right: 26px;
+          }
+
+          .user-info {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            .user-name {
+              font-size: 18px;
+              color: $skyBlue-text-color;
+              margin-bottom: 10px;
+            }
+
+            .comment-date {
+              font-size: 14px;
+              color: #bebebe;
+            }
+          }
+        }
+
+        .comment-text {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 140%;
+          color: $blue-text-color;
+          margin-bottom: 39px;
+        }
+
+        .comment-actions {
+          display: flex;
+          align-items: center;
+
+          .comment-reactions {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+
+            span {
+              font-family: "Montserrat", sans-serif;
+              font-weight: 600;
+              font-size: 14px;
+              color: $blue-text-color;
+              margin-right: 2px;
+            }
+
+            svg {
+              cursor: pointer;
+
+
+              path{
+                stroke: $blue-text-color;
+
+                &.liked{
+                  stroke: $skyBlue-text-color;
+                }
+
+                &.blue{
+                  stroke: $blue-text-color;
+                }
+
+                &.disliked{
+                  stroke: red;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+    .load-more-comments {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      span {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        color: $skyBlue-text-color;
+        margin-right: 10px;
+      }
+    }
+  }
+}

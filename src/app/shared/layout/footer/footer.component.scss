@@ -1,0 +1,162 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.footer {
+  padding: 40px 0 54px;
+  background-color: #b9d5fd;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .footer-menu {
+      display: flex;
+      margin-bottom: 40px;
+
+      .logo {
+        margin-right: 40px;
+      }
+
+      .menu {
+        .menu-list {
+          display: flex;
+          align-items: center;
+          list-style: none;
+          gap: 20px;
+          padding: 0;
+
+          .menu-item a {
+            text-decoration: none;
+            color: $blue-text-color;
+          }
+        }
+      }
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: baseline;
+      gap: 60px;
+      margin-bottom: 10px;
+
+      .footer-info-block {
+        max-width: 253px;
+
+        .footer-info-block-title {
+          font-weight: 500;
+          font-size: 16px;
+          color: $skyBlue-text-color;
+          margin-bottom: 10px;
+        }
+
+        .footer-info-block-text {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 130%;
+          color: $blue-text-color;
+          margin-bottom: 10px;
+        }
+
+        .button {
+          width: 153px;
+        }
+
+        .footer-info-block-icons {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+
+          svg {
+            cursor: pointer;
+          }
+        }
+
+        &:last-child {
+          .footer-info-block-title {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+
+    .footer-rights {
+      font-size: 16px;
+      color: $skyBlue-text-color;
+    }
+  }
+}
+
+.call-modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0000008a;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .call-modal-info {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 727px;
+    height: 489px;
+    border-radius: 10px;
+
+    svg {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+    }
+
+    .call-modal-info-title {
+      @include head-lora-38;
+      margin-bottom: 20px;
+      color: $skyBlue-text-color;
+    }
+
+    .call-modal-info-desc {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: $blue-text-color;
+      margin-bottom: 25px;
+    }
+
+    .call-modal-info-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .input {
+        width: 422px;
+        color: $skyBlue-text-color;
+      }
+
+      .button {
+        margin-top: 15px;
+        width: 422px;
+
+        &.button-complete{
+          width: 73px;
+        }
+      }
+
+      .error-message {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: red;
+        margin: 10px;
+      }
+    }
+  }
+}

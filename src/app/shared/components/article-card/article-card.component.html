@@ -1,0 +1,10 @@
+<div class="article-card">
+    <div class="article-card-type">{{article.category}}</div>
+    <div class="article-card-image" [style.background-image]="'url(' + '/assets/images/article/' + article.image + ')'">
+    </div>
+    <div class="article-card-title">{{article.title | longTextTitle}}</div>
+    <div class="article-card-desc">{{article.description | longText}}</div>
+    <div class="article-card-action">
+        <a routerLink="/blog/{{article.url}}">Читать дальше</a>
+    </div>
+</div>
