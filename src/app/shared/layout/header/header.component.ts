@@ -40,15 +40,15 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
   }
 
-  goToAnchor(anchor: string) {
+  goToAnchor(anchor: string, link: string) {
     this.router
-      .navigate([], {
+      .navigate(["/"], {
         fragment: '',
         queryParamsHandling: 'preserve',
         replaceUrl: true,
       })
       .then(() => {
-        this.router.navigate([], {
+        this.router.navigate([`${link}`], {
           fragment: anchor,
           queryParamsHandling: 'preserve',
         });

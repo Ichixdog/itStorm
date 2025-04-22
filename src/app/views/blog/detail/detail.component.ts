@@ -81,11 +81,17 @@ export class DetailComponent implements OnInit {
         return
       }
 
-      if(this.comments){
-        const existingIds = new Set(this.comments.comments.map(c => c.id))
-        const newComments = data.comments.filter(c => !existingIds.has(c.id))
-        this.comments.comments.push(...newComments)
-      } else{
+      if (this.comments) {
+        const updatedCommentsMap = new Map(data.comments.map(c => [c.id, c]));
+        this.comments.comments = this.comments.comments.map(c =>
+          updatedCommentsMap.get(c.id) || c
+        );
+      
+        
+        const existingIds = new Set(this.comments.comments.map(c => c.id));
+        const newComments = data.comments.filter(c => !existingIds.has(c.id));
+        this.comments.comments.push(...newComments);
+      } else {
         this.comments = data;
       }
 
@@ -135,8 +141,11 @@ export class DetailComponent implements OnInit {
           if ((res as DefaultResponseType).error !== true) {
             if(action === "violate"){
               this.snackBar.open("Жалоба отправлена")
+              this.loadComments(this.article.id, this.offset);
+            } else{
+              this.snackBar.open(action)
+              this.loadComments(this.article.id, this.offset);
             }
-            this.loadComments(this.article.id, this.offset);
           }
         },
         error: (error) => {

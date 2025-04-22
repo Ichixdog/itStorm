@@ -125,16 +125,17 @@ body {
 }
 
 .testimonials-slider {
+  box-sizing: border-box;
   
   .owl-item {
     border: 1px solid $skyBlue-text-color;
     border-radius: 5px;
-    width: 396px;
+    width: 396px !important;
     height: 267px;
     padding: 30px 30px 0 30px;
     box-sizing: border-box;
     margin-right: 1px;
-    
+
 
     .testimonials-slide-header {
       display: flex;

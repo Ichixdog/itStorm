@@ -43,7 +43,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-  goToAnchor(anchor: string) {
+  goToAnchor(anchor: string, link: string) {
     this.router
       .navigate([], {
         fragment: '',
@@ -51,7 +51,7 @@ export class FooterComponent implements OnInit {
         replaceUrl: true,
       })
       .then(() => {
-        this.router.navigate([], {
+        this.router.navigate([`${link}`], {
           fragment: anchor,
           queryParamsHandling: 'preserve',
         });

@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    margin: 25,
+    margin: 26,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
