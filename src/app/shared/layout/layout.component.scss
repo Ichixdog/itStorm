@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+router-outlet {
+  flex: 1; /* Контент заполняет всю доступную высоту */
+}
+
+app-footer {
+  color: white;
+  text-align: center;
+  
+}

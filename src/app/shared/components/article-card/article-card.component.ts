@@ -8,9 +8,19 @@ import { ArticleType } from 'src/types/article.type';
 })
 export class ArticleCardComponent implements OnInit {
 
-  @Input() article!: ArticleType
+  @Input() article: ArticleType
 
-  constructor() { }
+  constructor() {
+    this.article = {
+      id: "",
+      title: "",
+      description: "",
+      image: "",
+      date: "",
+      category: "",
+      url: ""
+    }
+   }
 
   ngOnInit(): void {
 

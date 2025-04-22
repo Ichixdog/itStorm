@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -16,7 +17,7 @@ export class FooterComponent implements OnInit {
     phone: ["", [Validators.required, Validators.pattern(/^\d{11}$/)]]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -42,4 +43,18 @@ export class FooterComponent implements OnInit {
     }
   }
 
+  goToAnchor(anchor: string) {
+    this.router
+      .navigate([], {
+        fragment: '',
+        queryParamsHandling: 'preserve',
+        replaceUrl: true,
+      })
+      .then(() => {
+        this.router.navigate([], {
+          fragment: anchor,
+          queryParamsHandling: 'preserve',
+        });
+      });
+  }
 }

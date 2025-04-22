@@ -20,10 +20,10 @@ import { OneArticle } from 'src/types/oneArticle.type';
 })
 export class DetailComponent implements OnInit {
   articleUrl: string | null = null;
-  article!: OneArticle;
+  article: OneArticle;
   relatedArticle: ArticleType[] = [];
   comments: CommentsType | null = null;
-  offset: number = 2;
+  offset: number = 0;
   commentActions: { [commentId: string]: CommentActionType } = {};
   isLogged: boolean = false;
   commentForm = this.fb.group({
@@ -37,16 +37,30 @@ export class DetailComponent implements OnInit {
     private commentsService: CommentsService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.article = {
+      text: "",
+      comments: [""],
+      commentsCount: 0,
+      id: "",
+      title: "",
+      description: "",
+      image: "",
+      date: new Date(),
+      category: "",
+      url: ""
+  }
+  }
 
   ngOnInit(): void {
     this.articleUrl = this.route.snapshot.paramMap.get('url') || '';
 
     this.articleService.getArticle(this.articleUrl).subscribe((data) => {
       this.article = data;
-      console.log(this.article);
-
       this.loadComments(this.article.id, this.offset);
+      console.log(data)
+
+
     });
 
     this.articleService
@@ -58,14 +72,24 @@ export class DetailComponent implements OnInit {
     this.isLogged = this.authService.getIsLogged();
   }
 
+
   loadComments(articleId: string, offset: number) {
     this.commentsService.getComments(articleId, offset).subscribe((data) => {
       if (data.allCount < 3 && offset !== 0) {
         offset = 0;
         this.loadComments(articleId, offset);
+        return
       }
-      this.comments = data;
-      console.log(this.comments);
+
+      if(this.comments){
+        const existingIds = new Set(this.comments.comments.map(c => c.id))
+        const newComments = data.comments.filter(c => !existingIds.has(c.id))
+        this.comments.comments.push(...newComments)
+      } else{
+        this.comments = data;
+      }
+
+      this.comments.comments.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
       for (let comment of data.comments) {
         this.commentsService.getActions(comment.id).subscribe((action) => {
@@ -75,18 +99,14 @@ export class DetailComponent implements OnInit {
           }
         });
       }
-      console.log(this.commentActions);
 
     });
   }
 
   loadMoreComments() {
-    if (this.offset !== 0) {
-      if (this.offset >= 2) {
-        this.offset -= 2;
-      } else {
-        this.offset = 0;
-      }
+    console.log(this.offset)
+    if (this.offset !== this.comments?.allCount && this.offset < this.comments!.allCount) {
+      this.offset += 3
       this.loadComments(this.article.id, this.offset);
     }
   }
@@ -99,13 +119,13 @@ export class DetailComponent implements OnInit {
           if ((res as DefaultResponseType).error !== true) {
             this.snackBar.open('Комментарий оставлен');
             this.commentForm.get('comment')?.setValue('');
+            this.loadComments(this.article.id, 0);
           }
         },
         error: (error) => {
           this.snackBar.open('Ошибка при добавлении комментария');
         },
       });
-    this.loadComments(this.article.id, this.offset);
   }
 
   applyAction(commentUrl: string, action: string) {
@@ -113,12 +133,14 @@ export class DetailComponent implements OnInit {
       this.commentsService.applyAction(commentUrl, action).subscribe({
         next: (res) => {
           if ((res as DefaultResponseType).error !== true) {
-            this.snackBar.open('Лайк');
+            if(action === "violate"){
+              this.snackBar.open("Жалоба отправлена")
+            }
             this.loadComments(this.article.id, this.offset);
           }
         },
         error: (error) => {
-          this.snackBar.open('Ошибка');
+          this.snackBar.open(error.error.message);
         },
       });
     } else {

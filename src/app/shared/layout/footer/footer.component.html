@@ -6,11 +6,11 @@
             </a>
             <nav class="menu">
                 <ul class="menu-list">
-                    <li class="menu-item"><a routerLink="/" fragment="service">Услуги</a></li>
-                    <li class="menu-item"><a routerLink="/" fragment="about">О нас</a></li>
+                    <li class="menu-item"><a routerLink="/" fragment="service" (click)="goToAnchor('service')">Услуги</a></li>
+                    <li class="menu-item"><a routerLink="/" fragment="about" (click)="goToAnchor('about')">О нас</a></li>
                     <li class="menu-item"><a routerLink="/blog">Статьи</a></li>
-                    <li class="menu-item"><a routerLink="/" fragment="testimonials">Отзывы</a></li>
-                    <li class="menu-item"><a routerLink="/" fragment="contacts">Контакты</a></li>
+                    <li class="menu-item"><a routerLink="/" fragment="testimonials" (click)="goToAnchor('testimonials')">Отзывы</a></li>
+                    <li class="menu-item"><a routerLink="/" fragment="contacts" (click)="goToAnchor('contacts')">Контакты</a></li>
                 </ul>
             </nav>
         </div>
@@ -57,6 +57,7 @@
         <div class="call-modal-info-title">Заявка на услугу</div>
         <div class="call-modal-info-form">
             <input class="input" type="text" formControlName="name" placeholder="Ваше имя">
+            <div class="error-message" *ngIf="callForm.get('name')?.invalid && (callForm.get('name')?.dirty || callForm.get('name')?.touched)">Введите имя</div>
             <input class="input" type="text" formControlName="phone" placeholder="Ваш номер телефона">
             <div class="error-message" *ngIf="callForm.get('phone')?.invalid && (callForm.get('phone')?.dirty || callForm.get('phone')?.touched)">Введите корректный номер телефона</div>
             <button class="button" (click)="proccessModalCall()">Оставить заявку</button>

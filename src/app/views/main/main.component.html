@@ -32,7 +32,7 @@
                     <div class="slider-info">
                         <div class="slide-type">Предложение месяца</div>
                         <div class="slide-title">Продвижение в Instagram для вашего бизнеса <span>-15%</span>!</div>
-                        <button class="button">Подробнее</button>
+                        <button class="button" (click)="openModal('Продвижение')">Подробнее</button>
                     </div>
                     <div class="slider-image">
                         <img src="/assets/images/slider/slider1.png" alt="slider">
@@ -43,7 +43,7 @@
                         <div class="slide-type">Акция</div>
                         <div class="slide-title title-with-desc">Нужен грамотный <span>копирайтер</span>?</div>
                         <div class="slide-desc">Весь декабрь у нас действует акция на работу копирайтера.</div>
-                        <button class="button">Подробнее</button>
+                        <button class="button" (click)="openModal('Копирайтинг')">Подробнее</button>
                     </div>
                     <div class="slider-image">
                         <img src="/assets/images/slider/slider2.png" alt="slider">
@@ -54,7 +54,7 @@
                         <div class="slide-type">Новость дня</div>
                         <div class="slide-title title-with-desc"><span>6 место</span> в ТОП-10 SMM-агенств Москвы!</div>
                         <div class="slide-desc">Мы благодарим каждого, кто голосовал за нас!</div>
-                        <button class="button">Подробнее</button>
+                        <button class="button" (click)="openModal('Продвижение')">Подробнее</button>
                     </div>
                     <div class="slider-image">
                         <img src="/assets/images/slider/slider3.png" alt="slider">
@@ -234,6 +234,7 @@
         <div class="service-modal-info-form">
             <input class="input" type="text" formControlName="service" >
             <input class="input" type="text" formControlName="name" placeholder="Ваше имя">
+            <div class="error-message" *ngIf="serviceForm.get('name')?.invalid && (serviceForm.get('name')?.dirty || serviceForm.get('name')?.touched)">Введите имя</div>
             <input class="input" type="text" formControlName="phone" placeholder="Ваш номер телефона">
             <div class="error-message" *ngIf="serviceForm.get('phone')?.invalid && (serviceForm.get('phone')?.dirty || serviceForm.get('phone')?.touched)">Введите корректный номер телефона</div>
             <button class="button" (click)="proccessRequest()">Оставить заявку</button>
